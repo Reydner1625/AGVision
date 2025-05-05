@@ -1,0 +1,15 @@
+# CAMADA 1: Escolha a imagem do Node-RED (como pão de hambúrguer)
+FROM nodered/node-red:latest
+
+# CAMADA 2: Cria a pasta /data e dá permissão (como o recheio)
+RUN mkdir -p /data && chown -R node-red:root /data
+
+# CAMADA 3: Configurações extras (como os temperos)
+ENV NODE_RED_ENABLE_PROJECTS=false
+ENV NODE_RED_DATA_DIR=/data
+
+# CAMADA 4: Porta que o Node-RED usa (como o guardanapo)
+EXPOSE 1880
+
+# CAMADA 5: Comando para iniciar (como "pronto para servir!")
+CMD ["npm", "start", "--", "--userDir", "/data"]
